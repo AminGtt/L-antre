@@ -15,7 +15,7 @@
       <input type="password">
     </div>
 
-    <input type="submit" value="Connexion" class='btn btn-success'>
+    <input type="submit" value="Connexion" class='btn btn-lg btn-success'>
 
   </div>
 </form>

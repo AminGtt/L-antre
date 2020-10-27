@@ -7,16 +7,16 @@
 
     <div class="mb-4 mt-4">
       <a class="mr-3 ml-3" href="enregistrement.php">
-        <button class="btn btn-primary">Inscrivez-vous</button>
+        <button class="btn btn-lg btn-primary">Inscrivez-vous</button>
       </a>
 
       <a class="mr-3 ml-3" href="connexion.php">
-        <button class="btn btn-outline-primary">Connectez-vous</button>
+        <button class="btn btn-lg btn-outline-primary">Connectez-vous</button>
       </a>
     </div>
 
     <a href="404.php">
-        <button class="btn btn-danger">Ou fuyez pauvre fou !</button>
+        <button class="btn btn-lg btn-danger">Ou fuyez pauvre fou !</button>
     </a>
 
   </main>
