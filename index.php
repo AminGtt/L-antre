@@ -2,20 +2,20 @@
 
 <body class="container">
   <main class="d-flex align-items-center flex-column">
-    <h1>Bienvenue dans l'antre du chat fou!</h1>
+    <h1 class="mt-5 mb-4">Bienvenue dans l'antre du chat fou!</h1>
     <p>Vous êtes perdu ou faites-vous parmis de nos habitués?</p>
 
-    <div>
-      <a href="enregistrement.php">
+    <div class="mb-4 mt-4">
+      <a class="mr-3 ml-3" href="enregistrement.php">
         <button class="btn btn-primary">Inscrivez-vous</button>
       </a>
 
-      <a href="connexion.php">
+      <a class="mr-3 ml-3" href="connexion.php">
         <button class="btn btn-outline-primary">Connectez-vous</button>
       </a>
     </div>
 
-    <a href="#">
+    <a href="404.php">
         <button class="btn btn-danger">Ou fuyez pauvre fou !</button>
     </a>
 

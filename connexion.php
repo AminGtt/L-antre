@@ -2,15 +2,15 @@
 
 <!-- code here! -->
 <form action="">
-  <div class="container text-center">
-    <p>Alors comme ça il parait que vous faites partis des nôtres? Prouvez-le!</p>
+  <div class="container text-center mt-5 mb-5">
+    <p class="font-weight-bolder">Alors comme ça il parait que vous faites partis des nôtres? Prouvez-le!</p>
 
-    <div>
+    <div class="form-group">
       <label for="mail">Email : </label>
       <input type="mail">
     </div>
 
-    <div>
+    <div class="form-group">
       <label for="pass">Mot de passe : </label>
       <input type="password">
     </div>

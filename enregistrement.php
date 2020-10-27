@@ -2,7 +2,7 @@
 
 <form action="">
   <div class="container text-center">
-    <p class="text-center">Hmm, vous voulez faire parti de l'équipe? Renseignez les informations ci-dessous et vous en êtes. Du moins c'est ce qu'on vera x)</p>
+    <p class="text-center mt-5 mb-4 font-weight-bolder">Hmm, vous voulez faire parti de l'équipe? Renseignez les informations ci-dessous et vous en êtes. Du moins c'est ce qu'on vera x)</p>
 
     <div class='form-group'>
       <label for="pseudo">Pseudo : </label>
@@ -36,10 +36,10 @@
 
     <div class='form-check'>
       <input class='form-check-input' type="checkbox" name="major" id="major">
-      <label class='form-check-label' for="major" id="major">En validant ce formulaire vous assurez avoir plus de 18ans.</label>
+      <label class='form-check-label ml-3' for="major" id="major">En validant ce formulaire vous assurez avoir plus de 18ans.</label>
     </div>
 
-    <input class='btn btn-primary' type="submit" value="Inscription">
+    <input class='btn btn-primary mt-3' type="submit" value="Inscription">
 
   </div>
 </form>
