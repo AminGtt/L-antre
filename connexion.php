@@ -9,13 +9,13 @@ if(isset($_POST['sub']))
 
   if(filter_var($mail, FILTER_VALIDATE_EMAIL))
   {
-    $mailToValidate = $bdd->prepare('SELECT * FROM users WHERE mail=?');
+    $mailToValidate = $bdd->prepare('SELECT * FROM user WHERE mail=?');
     $mailToValidate->execute([$mail]);
     $mailExist = $mailToValidate->rowCount();
     
     if($mailExist === 1)
     {
-      $passToValidate = $bdd->prepare('SELECT * FROM users WHERE passH=?');
+      $passToValidate = $bdd->prepare('SELECT * FROM user WHERE passH=?');
       $passToValidate->execute([$passH]);
       $passExist = $passToValidate->rowCount();
       if(password_verify($passExist, $passH))

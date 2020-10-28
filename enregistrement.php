@@ -1,11 +1,14 @@
 <?php require __DIR__ . "/templates/header.tpl.php"; 
 
-$bdd = new PDO('mysql:host=localhost;dbname=u_shall_not_pass', 'root', 'toor');
+$options = [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,
+    PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC
+];
+
+$bdd = new PDO('mysql:host=localhost;dbname=u_shall_not_pass; charset=utf8', 'root', 'toor', $options);
 
 if(isset($_POST['sub']))
 {
-  echo 'ok';
-  
   $pseudo = htmlspecialchars($_POST['pseudo']);
   $bDay = htmlspecialchars($_POST['bDay']);
   $mail = htmlspecialchars($_POST['mail']);
@@ -23,15 +26,15 @@ if(isset($_POST['sub']))
       {
         if(filter_var($mail, FILTER_VALIDATE_EMAIL))
         {
-          $reqMail = $bdd->prepare('SELECT * FROM users WHERE mail=?');
+          $reqMail = $bdd->prepare('SELECT * FROM user WHERE mail=?');
           $reqMail->execute(array($mail));
           $mailExist = $reqMail->rowCount();
           if($mailExist == 0)
           {
             if($_POST['pass'] === $_POST['passBis'])
             {
-              $insertMember = $bdd->prepare('INSERT INTO users(pseudo, mail, passwordH, bDay) VALUES(?, ?, ?, ?)');
-              $insertMember->execute([$_POST['pseudo'], $_POST['mail'], $pass, $_POST['bDay']]);
+              $insertMember = $bdd->prepare('INSERT INTO user(pseudo, mail, passwordH, bDay) VALUES(?, ?, ?, ?)');
+              $insertMember->execute([$pseudo, $mail, $pass, $bDay]);
               $success = "Votre compte à bien été créé.";
             }
             else
@@ -82,7 +85,7 @@ if(isset($_POST['sub']))
 
       <tr>
         <td align="right"><label for="bDay">Date de naissance (jj/mm/aaaa) : </label></td>
-        <td align="left"><input type="text" name="bDay" id="bDay" value="<?php if(isset($bDay)){echo "$bDay";} ?>" autocomplete="off"></td>
+        <td align="left"><input type="date" name="bDay" id="bDay" value="<?php if(isset($bDay)){echo "$bDay";} ?>" autocomplete="off"></td>
       </tr>
 
       <tr>
@@ -126,9 +129,16 @@ if(isset($_POST['sub']))
     elseif(isset($success))
     {
       echo $success;
+
+      $pseudo = '';
+      $mail = '';
+      $bDay = '';
+      $mailBis = '';
     }
   ?>
 </div>
-
+<div align='center'>
+  <a class='btn btn-lg btn-outline-dark mt-3' href="index.php">Retour à l'acceuil</a>
+</div>
 
  <?php require __DIR__ . "/templates/footer.tpl.php"; ?>
