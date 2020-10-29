@@ -36,6 +36,7 @@ if(isset($_POST['sub']))
               $insertMember = $bdd->prepare('INSERT INTO user(pseudo, mail, passwordH, bDay) VALUES(?, ?, ?, ?)');
               $insertMember->execute([$pseudo, $mail, $pass, $bDay]);
               $success = "Votre compte à bien été créé.";
+              header("Location: http://localhost/projet_perso/L-antre/connexion.php");
             }
             else
             {

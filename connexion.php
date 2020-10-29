@@ -1,11 +1,12 @@
 <?php require __DIR__ . "/templates/header.tpl.php";
 
 $bdd = new PDO('mysql:host=localhost;dbname=u_shall_not_pass', 'root', 'toor');
+$_SESSION['connecte'] = "0";
 
 if(isset($_POST['sub']))
 {
   $mail = htmlspecialchars($_POST['mail']);
-  $passH = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+  $passToValidate = $_POST['pass'];
 
   if(filter_var($mail, FILTER_VALIDATE_EMAIL))
   {
@@ -15,12 +16,16 @@ if(isset($_POST['sub']))
     
     if($mailExist === 1)
     {
-      $passToValidate = $bdd->prepare('SELECT * FROM user WHERE passH=?');
-      $passToValidate->execute([$passH]);
-      $passExist = $passToValidate->rowCount();
-      if(password_verify($passExist, $passH))
+      $passInDb = $bdd->prepare('SELECT * FROM user WHERE mail=?');
+      $passInDb->execute([$mail]);
+      $passToCheck = $passInDb->fetch();
+      $hToCheck = $passToCheck['passwordH'];
+
+      if(password_verify($passToValidate, $hToCheck))
       {
-        echo 'Le mot de passe est valide!';
+        $_SESSION['connecte'] = "1";
+        $_SESSION['idConnexion'] = $passToCheck['ID'];
+        header("Location: http://localhost/projet_perso/L-antre/espace_membre.php?idConnexion=".$_SESSION['idConnexion']);
       }
       else
       {
@@ -63,6 +68,9 @@ if(isset($_POST['sub']))
       echo $error;
     }
   ?>
+</div>
+<div align='center'>
+  <a class='btn btn-lg btn-outline-dark mt-3' href="index.php">Retour à l'acceuil</a>
 </div>
 
 
