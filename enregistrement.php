@@ -75,7 +75,7 @@ if(isset($_POST['sub']))
 
   <div class="container text-center">
 
-    <h3 class="text-center mt-5 mb-4 font-weight-bolder">Hmm, vous voulez faire parti de l'équipe? Renseignez les informations ci-dessous et vous en êtes. Du moins c'est ce qu'on vera x)</h3>
+    <h3 class="text-center mt-3 mb-4 font-weight-bolder">Hmm, vous voulez faire parti de l'équipe? Renseignez les informations ci-dessous et vous en êtes. Du moins c'est ce qu'on vera x)</h3>
 
     <table class="table table-striped table-bordered table-hover col-4 ml-auto mr-auto">
 

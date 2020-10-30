@@ -1,7 +1,13 @@
-<?php require __DIR__ . "/templates/header.tpl.php";
+<?php
+session_start();
+require __DIR__ . "/templates/header.tpl.php";
 
 $bdd = new PDO('mysql:host=localhost;dbname=u_shall_not_pass', 'root', 'toor');
-$_SESSION['connecte'] = "0";
+
+if($_SESSION['connecte'] == 1)
+{
+  header("Location: http://localhost/projet_perso/L-antre/espace_membre.php?idConnexion=".$_SESSION['idConnexion']);
+}
 
 if(isset($_POST['sub']))
 {
@@ -23,7 +29,7 @@ if(isset($_POST['sub']))
 
       if(password_verify($passToValidate, $hToCheck))
       {
-        $_SESSION['connecte'] = "1";
+        $_SESSION['connecte'] = 1;
         $_SESSION['idConnexion'] = $passToCheck['ID'];
         header("Location: http://localhost/projet_perso/L-antre/espace_membre.php?idConnexion=".$_SESSION['idConnexion']);
       }

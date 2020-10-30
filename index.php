@@ -1,4 +1,6 @@
-<?php require __DIR__ . "/templates/header.tpl.php" ?>
+<?php
+session_start();
+require __DIR__ . "/templates/header.tpl.php"; ?>
 
 <body class="container">
   <main class="d-flex align-items-center flex-column">
