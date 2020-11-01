@@ -1,11 +1,4 @@
-<?php require __DIR__ . "/templates/header.tpl.php"; 
-
-$options = [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,
-    PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC
-];
-
-$bdd = new PDO('mysql:host=localhost;dbname=u_shall_not_pass; charset=utf8', 'root', 'toor', $options);
+<?php
 
 if(isset($_POST['sub']))
 {
@@ -36,7 +29,7 @@ if(isset($_POST['sub']))
               $insertMember = $bdd->prepare('INSERT INTO user(pseudo, mail, passwordH, bDay) VALUES(?, ?, ?, ?)');
               $insertMember->execute([$pseudo, $mail, $pass, $bDay]);
               $success = "Votre compte à bien été créé.";
-              header("Location: http://localhost/projet_perso/L-antre/connexion.php");
+              header("Location: http://localhost/projet_perso/L-antre/index.php?page=connexion");
             }
             else
             {
@@ -139,7 +132,5 @@ if(isset($_POST['sub']))
   ?>
 </div>
 <div align='center'>
-  <a class='btn btn-lg btn-outline-dark mt-3' href="index.php">Retour à l'acceuil</a>
+  <a class='btn btn-lg btn-outline-dark mt-3' href="index.php?page=home">Retour à l'acceuil</a>
 </div>
-
- <?php require __DIR__ . "/templates/footer.tpl.php"; ?>

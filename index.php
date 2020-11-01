@@ -1,28 +1,37 @@
 <?php
 session_start();
-require __DIR__ . "/templates/header.tpl.php"; ?>
 
-<body class="container">
-  <main class="d-flex align-items-center flex-column">
-    <h1 class="mt-5 mb-4">Bienvenue dans l'antre du chat fou!</h1>
-    <p>Vous êtes perdu ou faites-vous parmis de nos habitués?</p>
+require __DIR__ . "/includes/data.php";
 
-    <div class="mb-4 mt-4">
-      <a class="mr-3 ml-3" href="enregistrement.php">
-        <button class="btn btn-lg btn-primary">Inscrivez-vous</button>
-      </a>
+if(empty($_SESSION['connecte']))
+{
+  $_SESSION['connecte'] = false;
+}
 
-      <a class="mr-3 ml-3" href="connexion.php">
-        <button class="btn btn-lg btn-outline-primary">Connectez-vous</button>
-      </a>
-    </div>
+$options = [
+  PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC
+];
 
-    <a href="404.php">
-        <button class="btn btn-lg btn-danger">Ou fuyez pauvre fou !</button>
-    </a>
+$bdd = new PDO('mysql:host=localhost;dbname=u_shall_not_pass', 'root', 'toor', $options);
 
-  </main>
+if(empty($_GET['page']))
+{
+  $_GET['page'] = 'home';
+}
 
-</body>
+if($_GET['page'] != 'home' && $_GET['page'] != 'connexion' && $_GET['page'] != 'inscription' && $_GET['page'] != 'espace_membre')
+{
+  $_GET['page'] = '404';
+}
 
-<?php require __DIR__ . "/templates/footer.tpl.php" ?>
+if(isset($_GET['page']))
+{
+  $pageToDisplay = $pages[$_GET['page']];
+}
+
+require __DIR__ . "/templates/header.tpl.php";
+
+require __DIR__ . "/includes/" . $pageToDisplay;
+
+require __DIR__ . "/templates/footer.tpl.php";
+?>

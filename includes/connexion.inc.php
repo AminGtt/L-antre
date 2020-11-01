@@ -1,12 +1,8 @@
 <?php
-session_start();
-require __DIR__ . "/templates/header.tpl.php";
 
-$bdd = new PDO('mysql:host=localhost;dbname=u_shall_not_pass', 'root', 'toor');
-
-if($_SESSION['connecte'] == 1)
+if($_SESSION['connecte'] == true)
 {
-  header("Location: http://localhost/projet_perso/L-antre/espace_membre.php?idConnexion=".$_SESSION['idConnexion']);
+  header("Location: http://localhost/projet_perso/L-antre/index.php?page=espace_membre&idConnexion=".$_SESSION['idConnexion']);
 }
 
 if(isset($_POST['sub']))
@@ -29,9 +25,9 @@ if(isset($_POST['sub']))
 
       if(password_verify($passToValidate, $hToCheck))
       {
-        $_SESSION['connecte'] = 1;
+        $_SESSION['connecte'] = true;
         $_SESSION['idConnexion'] = $passToCheck['ID'];
-        header("Location: http://localhost/projet_perso/L-antre/espace_membre.php?idConnexion=".$_SESSION['idConnexion']);
+        header("Location: http://localhost/projet_perso/L-antre/index.php?page=espace_membre&idConnexion=".$_SESSION['idConnexion']);
       }
       else
       {
@@ -76,8 +72,5 @@ if(isset($_POST['sub']))
   ?>
 </div>
 <div align='center'>
-  <a class='btn btn-lg btn-outline-dark mt-3' href="index.php">Retour à l'acceuil</a>
+  <a class='btn btn-lg btn-outline-dark mt-3' href="index.php?page=home">Retour à l'acceuil</a>
 </div>
-
-
-<?php require __DIR__ . "/templates/footer.tpl.php" ?>
